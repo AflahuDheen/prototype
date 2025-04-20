@@ -257,3 +257,79 @@ html {
 .button:not(:last-child) {
   margin-bottom: 64px;
 }
+
+/* Ensure the navigation menu is responsive */
+nav {
+  transition: all 0.3s ease-in-out;
+}
+
+nav a {
+  text-align: center;
+}
+
+/* Smooth animation for the hamburger menu */
+nav {
+  transition: all 0.3s ease-in-out;
+}
+
+nav a {
+  position: relative;
+  text-align: center;
+  display: inline-block;
+  text-decoration: none;
+  color: black;
+}
+
+/* Hover effect: underline and zoom-in */
+nav a:hover {
+  color: #1d4ed8; /* Blue color on hover */
+  transform: scale(1.05); /* Slight zoom-in */
+}
+
+nav a span {
+  position: absolute;
+  bottom: 0;
+  left: 0;
+  height: 2px;
+  width: 0;
+  background-color: #1d4ed8; /* Blue underline */
+  transition: width 0.3s ease-in-out;
+}
+
+nav a:hover span {
+  width: 100%; /* Full underline on hover */
+}
+
+/* Hamburger menu animation */
+@media (max-width: 768px) {
+  nav {
+    transform: translateY(-100%);
+    opacity: 0;
+  }
+
+  nav.translate-y-0 {
+    transform: translateY(0);
+    opacity: 1;
+  }
+}
+
+/* Adjust button alignment for mobile */
+@media (max-width: 768px) {
+  .flex-col {
+    flex-direction: column;
+  }
+
+  .space-y-4 {
+    margin-bottom: 1rem;
+  }
+
+  /* Center buttons in responsive mode */
+  .button-wrapper {
+    display: flex;
+    flex-direction: column;
+    align-items: center; /* Center horizontally */
+    justify-content: center; /* Center vertically */
+    gap: 16px; /* Add spacing between buttons */
+    margin-top: 1rem; /* Add some margin above the buttons */
+  }
+}

@@ -3,7 +3,7 @@
 import React, { useState, useEffect } from 'react';
 import { motion } from 'framer-motion';
 import { Button } from '@/components/ui/button';
-import { Mail, Phone } from 'lucide-react';
+import { Mail, Phone, Menu, X } from 'lucide-react'; // Add Menu and X icons
 import './App.css';
 
 const languages = [
@@ -48,20 +48,19 @@ const scrollCardVariants = {
 
 const AnimatedButton = ({ text }) => {
   return (
-    <div className="container">
-      <a href="#" className="button type--C">
-        <div className="button__line"></div>
-        <div className="button__line"></div>
-        <span className="button__text">{text}</span>
-        <div className="button__drow1"></div>
-        <div className="button__drow2"></div>
-      </a>
-    </div>
+    <a href="#" className="button type--C">
+      <div className="button__line"></div>
+      <div className="button__line"></div>
+      <span className="button__text">{text}</span>
+      <div className="button__drow1"></div>
+      <div className="button__drow2"></div>
+    </a>
   );
 };
 
 export default function HomePage() {
   const [isScrolled, setIsScrolled] = useState(false);
+  const [menuOpen, setMenuOpen] = useState(false); // State for hamburger menu
 
   useEffect(() => {
     const handleScroll = () => {
@@ -78,13 +77,7 @@ export default function HomePage() {
   }, []);
 
   return (
-    <div
-      className="flex justify-center items-center w-screen h-screen bg-gray-50 overflow-auto scroll-smooth"
-      style={{
-        scrollbarWidth: 'none', // For Firefox
-        msOverflowStyle: 'none', // For Internet Explorer and Edge
-      }}
-    >
+    <div className="flex justify-center items-center w-screen h-screen bg-gray-50 overflow-auto scroll-smooth">
       <style>
         {`
         /* For WebKit-based browsers (Chrome, Safari, Edge) */
@@ -99,7 +92,7 @@ export default function HomePage() {
             isScrolled ? 'scale-105 shadow-lg' : 'scale-100'
           }`}
           style={{
-            transformOrigin: 'top center', // Ensures the zoom effect originates from the top
+            transformOrigin: 'top center',
           }}
         >
           <div
@@ -108,38 +101,54 @@ export default function HomePage() {
           >
             aDNex
           </div>
-          <nav className="space-x-6 text-sm">
+          {/* Hamburger Menu */}
+          <div className="md:hidden">
+            <button
+              onClick={() => setMenuOpen(!menuOpen)}
+              className="text-black focus:outline-none"
+            >
+              {menuOpen ? <X size={24} /> : <Menu size={24} />}
+            </button>
+          </div>
+          {/* Navigation Links */}
+          <nav
+            className={`${
+              menuOpen
+                ? 'translate-y-0 opacity-100'
+                : '-translate-y-full opacity-0'
+            } md:flex md:space-x-6 text-sm absolute md:static top-16 left-0 w-full md:w-auto bg-white md:bg-transparent shadow-md md:shadow-none transition-all duration-300 ease-in-out`}
+          >
             <a
               href="#about"
-              className="text-black hover:text-blue-600 transition-transform transform hover:scale-105 relative group"
+              className="block md:inline-block text-black hover:text-blue-600 transition-transform transform hover:scale-105 relative group px-4 py-2 md:p-0"
             >
               About
               <span className="absolute left-0 bottom-0 w-0 h-[2px] bg-blue-600 transition-all duration-300 group-hover:w-full"></span>
             </a>
             <a
               href="#approach"
-              className="text-black hover:text-blue-600 transition-transform transform hover:scale-105 relative group"
+              className="block md:inline-block text-black hover:text-blue-600 transition-transform transform hover:scale-105 relative group px-4 py-2 md:p-0"
             >
               Approach
               <span className="absolute left-0 bottom-0 w-0 h-[2px] bg-blue-600 transition-all duration-300 group-hover:w-full"></span>
             </a>
             <a
               href="#curriculum"
-              className="text-black hover:text-blue-600 transition-transform transform hover:scale-105 relative group"
+              className="block md:inline-block text-black hover:text-blue-600 transition-transform transform hover:scale-105 relative group px-4 py-2 md:p-0"
             >
               Curriculum
               <span className="absolute left-0 bottom-0 w-0 h-[2px] bg-blue-600 transition-all duration-300 group-hover:w-full"></span>
             </a>
             <a
               href="#languages"
-              className="text-black hover:text-blue-600 transition-transform transform hover:scale-105 relative group"
+              className="block md:inline-block text-black hover:text-blue-600 transition-transform transform hover:scale-105 relative group px-4 py-2 md:p-0"
             >
               Languages
               <span className="absolute left-0 bottom-0 w-0 h-[2px] bg-blue-600 transition-all duration-300 group-hover:w-full"></span>
             </a>
             <a
               href="#contact"
-              className="text-black hover:text-blue-600 transition-transform transform hover:scale-105 relative group"
+              className="block md:inline-block text-black hover:text-blue-600 transition-transform transform hover:scale-105 relative group px-4 py-2 md:p-0"
             >
               Contact
               <span className="absolute left-0 bottom-0 w-0 h-[2px] bg-blue-600 transition-all duration-300 group-hover:w-full"></span>
@@ -169,7 +178,7 @@ export default function HomePage() {
           </div>
 
           {/* Add Login and Signup buttons here */}
-          <div className="flex justify-center space-x-6 mt-6">
+          <div className="flex flex-col md:flex-row justify-center space-y-4 md:space-y-0 md:space-x-6 mt-6">
             <AnimatedButton text="Login" />
             <AnimatedButton text="Signup" />
           </div>
