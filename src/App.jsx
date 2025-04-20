@@ -4,6 +4,7 @@ import React, { useState, useEffect } from 'react';
 import { motion } from 'framer-motion';
 import { Button } from '@/components/ui/button';
 import { Mail, Phone } from 'lucide-react';
+import './App.css';
 
 const languages = [
   {
@@ -45,13 +46,25 @@ const scrollCardVariants = {
   whileInView: { scale: 1, opacity: 1 },
 };
 
+const AnimatedButton = ({ text }) => {
+  return (
+    <div className="container">
+      <a href="#" className="button type--C">
+        <div className="button__line"></div>
+        <div className="button__line"></div>
+        <span className="button__text">{text}</span>
+        <div className="button__drow1"></div>
+        <div className="button__drow2"></div>
+      </a>
+    </div>
+  );
+};
+
 export default function HomePage() {
   const [isScrolled, setIsScrolled] = useState(false);
 
   useEffect(() => {
     const handleScroll = () => {
-      console.log('Scroll event triggered'); // Debugging
-      console.log('Scroll position:', window.scrollY); // Debugging
       if (window.scrollY > 10) {
         setIsScrolled(true);
       } else {
@@ -153,6 +166,12 @@ export default function HomePage() {
               We break communication barriers to help students grow through
               group learning and mentorship.
             </motion.p>
+          </div>
+
+          {/* Add Login and Signup buttons here */}
+          <div className="flex justify-center space-x-6 mt-6">
+            <AnimatedButton text="Login" />
+            <AnimatedButton text="Signup" />
           </div>
 
           {/* Background Video */}
