@@ -77,7 +77,13 @@ export default function HomePage() {
   }, []);
 
   return (
-    <div className="flex justify-center items-center w-screen h-screen bg-gray-50 overflow-auto scroll-smooth">
+    <div
+      className="flex justify-center items-center w-screen h-screen bg-gray-50 overflow-auto scroll-smooth"
+      style={{
+        scrollbarWidth: 'none', // For Firefox
+        msOverflowStyle: 'none', // For Internet Explorer and Edge
+      }}
+    >
       <style>
         {`
         /* For WebKit-based browsers (Chrome, Safari, Edge) */
@@ -88,12 +94,9 @@ export default function HomePage() {
       </style>
       <main className="font-sans bg-white text-neutral-900 w-full h-full max-w-[1920px] max-h-[1080px]">
         <header
-          className={`flex justify-between items-center px-8 py-4 border-b border-gray-200 bg-white fixed top-0 left-0 w-full z-50 transition-transform duration-300 ${
-            isScrolled ? 'scale-105 shadow-lg' : 'scale-100'
-          }`}
-          style={{
-            transformOrigin: 'top center',
-          }}
+          className={`${
+            isScrolled ? 'is-scrolled' : ''
+          } flex justify-between items-center px-8 py-4`}
         >
           <div
             className="text-xl font-semibold text-neutral-800"
@@ -102,7 +105,7 @@ export default function HomePage() {
             aDNex
           </div>
           {/* Hamburger Menu */}
-          <div className="md:hidden">
+          <div className="hamburger-menu md:hidden">
             <button
               onClick={() => setMenuOpen(!menuOpen)}
               className="text-black focus:outline-none"
@@ -111,47 +114,38 @@ export default function HomePage() {
             </button>
           </div>
           {/* Navigation Links */}
-          <nav
-            className={`${
-              menuOpen
-                ? 'translate-y-0 opacity-100'
-                : '-translate-y-full opacity-0'
-            } md:flex md:space-x-6 text-sm absolute md:static top-16 left-0 w-full md:w-auto bg-white md:bg-transparent shadow-md md:shadow-none transition-all duration-300 ease-in-out`}
-          >
-            <a
-              href="#about"
-              className="block md:inline-block text-black hover:text-blue-600 transition-transform transform hover:scale-105 relative group px-4 py-2 md:p-0"
-            >
+          <nav className={`${menuOpen ? 'open' : 'closed'} md:flex`}>
+            <a href="#about" className="block md:inline-block px-4 py-2 md:p-0">
               About
-              <span className="absolute left-0 bottom-0 w-0 h-[2px] bg-blue-600 transition-all duration-300 group-hover:w-full"></span>
+              <span></span>
             </a>
             <a
               href="#approach"
-              className="block md:inline-block text-black hover:text-blue-600 transition-transform transform hover:scale-105 relative group px-4 py-2 md:p-0"
+              className="block md:inline-block px-4 py-2 md:p-0"
             >
               Approach
-              <span className="absolute left-0 bottom-0 w-0 h-[2px] bg-blue-600 transition-all duration-300 group-hover:w-full"></span>
+              <span></span>
             </a>
             <a
               href="#curriculum"
-              className="block md:inline-block text-black hover:text-blue-600 transition-transform transform hover:scale-105 relative group px-4 py-2 md:p-0"
+              className="block md:inline-block px-4 py-2 md:p-0"
             >
               Curriculum
-              <span className="absolute left-0 bottom-0 w-0 h-[2px] bg-blue-600 transition-all duration-300 group-hover:w-full"></span>
+              <span></span>
             </a>
             <a
               href="#languages"
-              className="block md:inline-block text-black hover:text-blue-600 transition-transform transform hover:scale-105 relative group px-4 py-2 md:p-0"
+              className="block md:inline-block px-4 py-2 md:p-0"
             >
               Languages
-              <span className="absolute left-0 bottom-0 w-0 h-[2px] bg-blue-600 transition-all duration-300 group-hover:w-full"></span>
+              <span></span>
             </a>
             <a
               href="#contact"
-              className="block md:inline-block text-black hover:text-blue-600 transition-transform transform hover:scale-105 relative group px-4 py-2 md:p-0"
+              className="block md:inline-block px-4 py-2 md:p-0"
             >
               Contact
-              <span className="absolute left-0 bottom-0 w-0 h-[2px] bg-blue-600 transition-all duration-300 group-hover:w-full"></span>
+              <span></span>
             </a>
           </nav>
         </header>

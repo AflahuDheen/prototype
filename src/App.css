@@ -260,7 +260,7 @@ html {
 
 /* Ensure the navigation menu is responsive */
 nav {
-  transition: all 0.3s ease-in-out;
+  transition: transform 0.3s ease-in-out, opacity 0.3s ease-in-out;
 }
 
 nav a {
@@ -269,7 +269,17 @@ nav a {
 
 /* Smooth animation for the hamburger menu */
 nav {
-  transition: all 0.3s ease-in-out;
+  transition: transform 0.3s ease-in-out, opacity 0.3s ease-in-out;
+}
+
+nav.translate-y-0 {
+  transform: translateY(0);
+  opacity: 1;
+}
+
+nav.-translate-y-full {
+  transform: translateY(-100%);
+  opacity: 0;
 }
 
 nav a {
@@ -313,6 +323,34 @@ nav a:hover span {
   }
 }
 
+/* Navigation visibility for larger screens */
+@media (min-width: 768px) {
+  nav {
+    transform: translateY(0) !important;
+    opacity: 1 !important;
+    display: flex !important;
+  }
+}
+
+/* Hamburger menu animation for smaller screens */
+@media (max-width: 768px) {
+  nav {
+    transition: transform 0.3s ease-in-out, opacity 0.3s ease-in-out;
+  }
+
+  nav.open {
+    transform: translateY(0);
+    opacity: 1;
+    display: block;
+  }
+
+  nav.closed {
+    transform: translateY(-100%);
+    opacity: 0;
+    display: none;
+  }
+}
+
 /* Adjust button alignment for mobile */
 @media (max-width: 768px) {
   .flex-col {
@@ -331,5 +369,103 @@ nav a:hover span {
     justify-content: center; /* Center vertically */
     gap: 16px; /* Add spacing between buttons */
     margin-top: 1rem; /* Add some margin above the buttons */
+  }
+}
+
+/* For WebKit-based browsers (Chrome, Safari, Edge) */
+div::-webkit-scrollbar {
+  display: none;
+}
+
+/* Header styles */
+header {
+  display: flex;
+  align-items: center; /* Vertically center items */
+  justify-content: space-between; /* Space between logo and nav */
+  height: 64px; /* Set a consistent height for the header */
+  padding: 0 1rem; /* Add horizontal padding */
+  background-color: white;
+  border-bottom: 1px solid #e5e7eb; /* Light gray border */
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100%;
+  z-index: 50;
+  transition: transform 0.3s ease-in-out, box-shadow 0.3s ease-in-out;
+}
+
+header.is-scrolled {
+  transform: scale(1.05);
+  box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+}
+
+header nav {
+  display: flex;
+  align-items: center; /* Vertically center the links */
+  gap: 1rem; /* Add spacing between links */
+}
+
+/* Navigation link styles */
+header nav a {
+  position: relative;
+  text-align: center;
+  display: inline-block;
+  text-decoration: none;
+  color: black;
+  padding: 0.5rem 1rem; /* Add padding for better spacing */
+  transition: color 0.3s ease-in-out, transform 0.3s ease-in-out;
+}
+
+/* Hover effect: underline and zoom-in */
+header nav a:hover {
+  color: #1d4ed8; /* Blue color on hover */
+  transform: scale(1.05); /* Slight zoom-in */
+}
+
+header nav a span {
+  position: absolute;
+  bottom: 0;
+  left: 0;
+  height: 2px;
+  width: 0;
+  background-color: #1d4ed8; /* Blue underline */
+  transition: width 0.3s ease-in-out;
+}
+
+header nav a:hover span {
+  width: 100%; /* Full underline on hover */
+}
+
+/* Hamburger menu styles */
+.hamburger-menu {
+  display: none; /* Hide hamburger menu on larger screens */
+}
+
+@media (max-width: 768px) {
+  .hamburger-menu {
+    display: block; /* Show hamburger menu on smaller screens */
+  }
+
+  header nav {
+    position: absolute;
+    top: 64px; /* Below the header */
+    left: 0;
+    width: 100%;
+    background-color: white;
+    flex-direction: column; /* Stack links vertically */
+    gap: 0; /* Remove gap between links */
+    transform: translateY(-100%);
+    opacity: 0;
+    transition: transform 0.3s ease-in-out, opacity 0.3s ease-in-out;
+  }
+
+  header nav.open {
+    transform: translateY(0);
+    opacity: 1;
+  }
+
+  header nav a {
+    padding: 1rem; /* Add more padding for touch-friendly links */
+    border-bottom: 1px solid #e5e7eb; /* Add a divider between links */
   }
 }
