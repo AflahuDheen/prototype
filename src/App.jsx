@@ -451,22 +451,34 @@ export default function HomePage() {
           className="py-24 px-6 bg-gray-50 max-w-5xl mx-auto grid gap-12"
         >
           <motion.div
-            className="rounded-xl bg-white p-8 shadow-md"
+            className="flex flex-col md:flex-row items-center rounded-xl bg-white p-8 shadow-md"
             variants={scrollCardVariants}
             initial="initial"
             whileInView="whileInView"
             transition={{ duration: 0.4 }}
           >
-            <h2 className="text-3xl font-semibold mb-4 text-neutral-800">
-              Our Approach
-            </h2>
-            <ul className="list-disc space-y-2 pl-5 text-gray-700">
-              <li>Hybrid online/offline sessions</li>
-              <li>Groups of 5 students per mentor</li>
-              <li>Peer-to-peer doubt clearing</li>
-              <li>Mentor guidance at critical points</li>
-              <li>Real-world project-based learning</li>
-            </ul>
+            {/* Text Content */}
+            <div className="md:w-1/2">
+              <h2 className="text-3xl font-semibold mb-4 text-neutral-800">
+                Our Approach
+              </h2>
+              <ul className="list-disc space-y-2 pl-5 text-gray-700">
+                <li>Hybrid online/offline sessions</li>
+                <li>Groups of 5 students per mentor</li>
+                <li>Peer-to-peer doubt clearing</li>
+                <li>Mentor guidance at critical points</li>
+                <li>Real-world project-based learning</li>
+              </ul>
+            </div>
+
+            {/* Image */}
+            <div className="md:w-1/2 flex justify-center">
+              <img
+                src="https://img.freepik.com/free-vector/seminar-concept-illustration_114360-7660.jpg?t=st=1745239089~exp=1745242689~hmac=f9c0178cde3c5175b5fd8c809fa6926ef1d3181c019980047c8c98ded1b1bb13&w=1380"
+                alt="Our Approach"
+                className="rounded-lg shadow-lg"
+              />
+            </div>
           </motion.div>
         </section>
 
@@ -475,22 +487,34 @@ export default function HomePage() {
           className="py-24 px-6 max-w-5xl mx-auto grid gap-12"
         >
           <motion.div
-            className="rounded-xl bg-white p-8 shadow-md"
+            className="flex flex-col md:flex-row items-center rounded-xl bg-white p-8 shadow-md"
             variants={scrollCardVariants}
             initial="initial"
             whileInView="whileInView"
             transition={{ duration: 0.4 }}
           >
-            <h2 className="text-3xl font-semibold mb-4 text-neutral-800">
-              What You'll Learn
-            </h2>
-            <ul className="list-disc space-y-2 pl-5 text-gray-700">
-              <li>Programming Languages: Python, JavaScript, Java, C++</li>
-              <li>Web Development: HTML, CSS, React, Node.js</li>
-              <li>Mobile Development: Flutter, React Native</li>
-              <li>Data Structures & Algorithms</li>
-              <li>Version Control with Git & GitHub</li>
-            </ul>
+            {/* Text Content */}
+            <div className="md:w-1/2">
+              <h2 className="text-3xl font-semibold mb-4 text-neutral-800">
+                What You'll Learn
+              </h2>
+              <ul className="list-disc space-y-2 pl-5 text-gray-700">
+                <li>Programming Languages: Python, JavaScript, Java, C++</li>
+                <li>Web Development: HTML, CSS, React, Node.js</li>
+                <li>Mobile Development: Flutter, React Native</li>
+                <li>Data Structures & Algorithms</li>
+                <li>Version Control with Git & GitHub</li>
+              </ul>
+            </div>
+
+            {/* Image */}
+            <div className="md:w-1/2 flex justify-center">
+              <img
+                src="https://img.freepik.com/free-vector/laptop-with-program-code-isometric-icon-software-development-programming-applications-dark-neon_39422-971.jpg?t=st=1745238972~exp=1745242572~hmac=9d75acc6bfab8da8ba0717047467575f3c824de3b56e01e14d98e72ffd1fcb86&w=1060"
+                alt="What You'll Learn"
+                className="rounded-lg shadow-lg"
+              />
+            </div>
           </motion.div>
         </section>
 
