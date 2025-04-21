@@ -6,6 +6,7 @@ import { Button } from '@/components/ui/button';
 import { Mail, Phone, Menu, X } from 'lucide-react'; // Add Menu and X icons
 import './App.css';
 import styled from 'styled-components';
+import logo from './assets/aDNex.png';
 
 const languages = [
   {
@@ -240,55 +241,201 @@ const StyledWrapper = styled.div`
   }
 `;
 
-export const AnimatedButton = ({ text }) => {
+export const AnimatedButton = ({ text, href }) => {
   return (
     <StyledWrapper2>
-      <button className="button">{text}</button>
+      <button type="button" className="btn">
+        <strong>{text}</strong>
+        <div id="container-stars">
+          <div id="stars" />
+        </div>
+        <div id="glow">
+          <div className="circle" />
+          <div className="circle" />
+        </div>
+      </button>
     </StyledWrapper2>
   );
 };
-
 const StyledWrapper2 = styled.div`
-  .button {
-    padding: 1em 2em;
-    border: none;
-    border-radius: 5px;
-    font-weight: bold;
-    letter-spacing: 5px;
-    text-transform: uppercase;
-    cursor: pointer;
-    color: rgb(0, 0, 0);
-    transition: all 1000ms;
-    font-size: 15px;
-    position: relative;
+  .btn {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    width: 13rem;
     overflow: hidden;
-    outline: 2px solid #000000;
+    height: 3rem;
+    background-size: 300% 300%;
+    cursor: pointer;
+    backdrop-filter: blur(1rem);
+    border-radius: 5rem;
+    transition: 0.5s;
+    animation: gradient_301 5s ease infinite;
+    border: double 4px transparent;
+    background-image: linear-gradient(#212121, #212121),
+      linear-gradient(
+        137.48deg,
+        #ffdb3b 10%,
+        #fe53bb 45%,
+        #8f51ea 67%,
+        #0044ff 87%
+      );
+    background-origin: border-box;
+    background-clip: content-box, border-box;
   }
 
-  button:hover {
+  #container-stars {
+    position: absolute;
+    z-index: -1;
+    width: 100%;
+    height: 100%;
+    overflow: hidden;
+    transition: 0.5s;
+    backdrop-filter: blur(1rem);
+    border-radius: 5rem;
+  }
+
+  strong {
+    z-index: 2;
+    font-family: 'Avalors Personal Use';
+    font-size: 12px;
+    letter-spacing: 5px;
     color: #ffffff;
-    transform: scale(1.1);
-    outline: 2px solidrgb(0, 0, 0);
-    box-shadow: 4px 5px 17px -4px #268391;
+    text-shadow: 0 0 4px white;
   }
 
-  button::before {
+  #glow {
+    position: absolute;
+    display: flex;
+    width: 12rem;
+  }
+
+  .circle {
+    width: 100%;
+    height: 30px;
+    filter: blur(2rem);
+    animation: pulse_3011 4s infinite;
+    z-index: -1;
+  }
+
+  .circle:nth-of-type(1) {
+    background: rgba(254, 83, 186, 0.636);
+  }
+
+  .circle:nth-of-type(2) {
+    background: rgba(142, 81, 234, 0.704);
+  }
+
+  .btn:hover #container-stars {
+    z-index: 1;
+    background-color: #212121;
+  }
+
+  .btn:hover {
+    transform: scale(1.1);
+  }
+
+  .btn:active {
+    border: double 4px #fe53bb;
+    background-origin: border-box;
+    background-clip: content-box, border-box;
+    animation: none;
+  }
+
+  .btn:active .circle {
+    background: #fe53bb;
+  }
+
+  #stars {
+    position: relative;
+    background: transparent;
+    width: 200rem;
+    height: 200rem;
+  }
+
+  #stars::after {
     content: '';
     position: absolute;
-    left: -50px;
-    top: 0;
-    width: 0;
+    top: -10rem;
+    left: -100rem;
+    width: 100%;
     height: 100%;
-    background-color: rgb(0, 0, 0);
-    transform: skewX(45deg);
-    z-index: -1;
-    transition: width 1000ms;
+    animation: animStarRotate 90s linear infinite;
   }
 
-  button:hover::before {
-    width: 250%;
+  #stars::after {
+    background-image: radial-gradient(#ffffff 1px, transparent 1%);
+    background-size: 50px 50px;
+  }
+
+  #stars::before {
+    content: '';
+    position: absolute;
+    top: 0;
+    left: -50%;
+    width: 170%;
+    height: 500%;
+    animation: animStar 60s linear infinite;
+  }
+
+  #stars::before {
+    background-image: radial-gradient(#ffffff 1px, transparent 1%);
+    background-size: 50px 50px;
+    opacity: 0.5;
+  }
+
+  @keyframes animStar {
+    from {
+      transform: translateY(0);
+    }
+
+    to {
+      transform: translateY(-135rem);
+    }
+  }
+
+  @keyframes animStarRotate {
+    from {
+      transform: rotate(360deg);
+    }
+
+    to {
+      transform: rotate(0);
+    }
+  }
+
+  @keyframes gradient_301 {
+    0% {
+      background-position: 0% 50%;
+    }
+
+    50% {
+      background-position: 100% 50%;
+    }
+
+    100% {
+      background-position: 0% 50%;
+    }
+  }
+
+  @keyframes pulse_3011 {
+    0% {
+      transform: scale(0.75);
+      box-shadow: 0 0 0 0 rgba(0, 0, 0, 0.7);
+    }
+
+    70% {
+      transform: scale(1);
+      box-shadow: 0 0 0 10px rgba(0, 0, 0, 0);
+    }
+
+    100% {
+      transform: scale(0.75);
+      box-shadow: 0 0 0 0 rgba(0, 0, 0, 0);
+    }
   }
 `;
+
 export default function HomePage() {
   const [isScrolled, setIsScrolled] = useState(false);
   const [menuOpen, setMenuOpen] = useState(false); // State for hamburger menu
@@ -329,12 +476,15 @@ export default function HomePage() {
             isScrolled ? 'is-scrolled' : ''
           } flex justify-between items-center px-8 py-4`}
         >
-          <div
-            className="text-xl font-semibold text-neutral-800"
-            style={{ fontFamily: "'Old English Text MT', serif" }}
-          >
-            aDNex
+          {/* Logo */}
+          <div className="flex items-center">
+            <img
+              src={logo} // Replace with the path to your logo image
+              alt="aDNex Logo"
+              className="h-10 w-auto" // Adjust height and width as needed
+            />
           </div>
+
           {/* Hamburger Menu */}
           <div className="hamburger-menu md:hidden">
             <button
@@ -344,6 +494,7 @@ export default function HomePage() {
               {menuOpen ? <X size={24} /> : <Menu size={24} />}
             </button>
           </div>
+
           {/* Navigation Links */}
           <nav className={`${menuOpen ? 'open' : 'closed'} md:flex`}>
             <a href="#about" className="block md:inline-block px-4 py-2 md:p-0">
@@ -380,11 +531,20 @@ export default function HomePage() {
             </a>
           </nav>
         </header>
-        <section className="relative py-28 text-center px-6 max-w-4xl mx-auto mt-20">
+        <section
+          className="relative py-28 text-center px-6 max-w-4xl mx-auto mt-20"
+          style={{
+            backgroundImage:
+              "url('https://img.freepik.com/free-vector/natural-evening-landscape-with-green-hills_126523-20.jpg?t=st=1745240792~exp=1745244392~hmac=57e5cd6c12a28fbe7dca62b1086a375551bffb7a61b59f06f67ce485a13f229f&w=1480')", // Replace with your image path
+            backgroundSize: 'cover',
+            backgroundPosition: 'center',
+            borderRadius: '15px', // Add rounded corners
+          }}
+        >
           {/* Content */}
-          <div className="relative z-10 p-8 bg-white rounded-lg shadow-lg">
+          <div className="relative z-10 p-8">
             <motion.h1
-              className="text-5xl md:text-6xl font-bold mb-6 text-gray-900"
+              className="text-5xl md:text-6xl font-bold mb-6 text-transparent bg-clip-text bg-gradient-to-r from-blue-500 via-green-500 to-purple-500"
               initial={{ opacity: 0, y: 20 }}
               animate={{ opacity: 1, y: 0 }}
               transition={{ duration: 0.6 }}
@@ -392,7 +552,7 @@ export default function HomePage() {
               Empowering Collaborative Coding Education
             </motion.h1>
             <motion.p
-              className="text-lg text-gray-600 max-w-2xl mx-auto"
+              className="text-lg max-w-2xl mx-auto text-transparent bg-clip-text bg-gradient-to-r from-blue-500 via-green-500 to-purple-500"
               initial={{ opacity: 0 }}
               animate={{ opacity: 1 }}
               transition={{ delay: 0.4, duration: 0.6 }}
@@ -402,27 +562,10 @@ export default function HomePage() {
             </motion.p>
           </div>
 
-          {/* Add Login and Signup buttons here */}
+          {/* Buttons */}
           <div className="flex flex-col md:flex-row justify-center space-y-4 md:space-y-0 md:space-x-6 mt-6">
-            <AnimatedButton text="Login" href="#" />
-            <AnimatedButton text="Signup" href="#" />
-          </div>
-
-          {/* Background Video */}
-          <div className="absolute inset-0 -z-10 w-full h-full overflow-hidden">
-            <video
-              autoPlay
-              loop
-              muted
-              playsInline
-              className="w-full h-full object-cover"
-            >
-              <source
-                src="https://cdn.ramotion.com/1715091338-30fps.mp4"
-                type="video/mp4"
-              />
-              Your browser does not support the video tag.
-            </video>
+            <AnimatedButton text="Login" href="#login" />
+            <AnimatedButton text="Signup" href="#signup" />
           </div>
         </section>
 
