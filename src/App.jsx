@@ -7,6 +7,7 @@ import { Mail, Phone, Menu, X } from 'lucide-react'; // Add Menu and X icons
 import './App.css';
 import styled from 'styled-components';
 import logo from './assets/aDNex.png';
+import bg from './assets/bg.jpg';
 
 const languages = [
   {
@@ -534,8 +535,7 @@ export default function HomePage() {
         <section
           className="relative py-28 text-center px-6 max-w-4xl mx-auto mt-20"
           style={{
-            backgroundImage:
-              "url('https://img.freepik.com/free-vector/natural-evening-landscape-with-green-hills_126523-20.jpg?t=st=1745240792~exp=1745244392~hmac=57e5cd6c12a28fbe7dca62b1086a375551bffb7a61b59f06f67ce485a13f229f&w=1480')", // Replace with your image path
+            backgroundImage: `url(${bg})`, // Use the imported bg image from assets
             backgroundSize: 'cover',
             backgroundPosition: 'center',
             borderRadius: '15px', // Add rounded corners
